@@ -13,3 +13,9 @@ export = system
 
 [lookups]
 export = system
+
+[lookups/trac3_lookup_1]
+owner = nobody
+
+[views/sample_dashboard]
+owner = nobody

@@ -1,12 +1,31 @@
-<dashboard version="1.1">
-  
-  <label>Sample dashboard</label>
+<dashboard version="1.1" hideFilters="true">
+  <fieldset autoRun="true" submitButton="false"> 
+    <input type="radio" searchWhenChanged="true" token="role1">
+      <label>Dashboard Options</label>
+      <choice value="option1">Option 1</choice>
+      <choice value="option2">Option 2</choice>
+      <default>option1</default>
+    </input>
+    <input type="text" searchWhenChanged="true" token="text1">
+      <label>Dashboard Text Token 1</label>
+    </input>
+    <input type="multiselect" searchWhenChanged="true" token="role2">
+      <label>Dashboard Multiselect Options</label>
+      <choice value="option1">Option 1</choice>
+      <choice value="option2">Option 2</choice>
+      <default>option1</default>
+    </input>
+    <input type="dropdown" searchWhenChanged="true" token="role3">
+      <label>Dashboard Dropdown Options</label>
+      <choice value="option1">Option 1</choice>
+      <choice value="option2">Option 2</choice>
+      <default>option1</default>
+    </input>
+  </fieldset>
+  <label>Trac3 dashboard 1</label>
 
-
-  <!-- First row of a single comment -->
   <row>
 
-    <!-- Static content, remove upon editing-->
     <html>
       <h2>
       Welcome to your new app.  You can customize this app to look and work any way you want.  Here are a few options to get you started:
@@ -18,10 +37,62 @@
           <li>If you're not seeing any data, enable the "sample data" app in Manager <a href ="/manager/search/apps/local">here</a>. Note that this will index sample data which will count toward your daily indexing volume.</li>
       </ul>
     </html>
-  <!-- End of static content -->
 
   </row>
   
+    <row>
+    <panel rejects="$snapshot$">
+      <title>Searches Started Per Minute by Dispatcher</title>
+      <chart>
+        <search>
+          <query>
+(index=_audit sourcetype=audittrail action=search search=*) OR (index=_internal sourcetype=splunkd_remote_searches "Streamed search search starting") host=*
+| eval dispatcher = case(isnotnull(server) AND sourcetype=="splunkd_remote_searches", server, isnull(server) AND sourcetype=="splunkd_remote_searches", "unknown", sourcetype=="audittrail", "local instance")
+| bin _time
+| stats count by _time, dispatcher
+| timechart limit=50 per_minute(count) AS "New searches per minute" by dispatcher
+          </query>
+          <earliest>-60m@min</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.enabled">false</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.nullValueMode">connect</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="charting.axisTitleY.text">New searches/minute</option>
+        <option name="charting.axisTitleX.text">Time</option>
+      </chart>
+      <html>
+        <p>This graph shows the number of searches newly dispatched every minute, grouped by instance that originally dispatched the search. The value "local instance" means that the search originated locally, as opposed to being dispatched by a remote search-head.</p>
+      </html>
+    </panel>
+  </row>
+  
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>
+            | inputlookup trac3_lookup_1
+          </query>
+        </search>
+      </table>
+    </panel>
+  </row>
   
   <!-- Second row of 2 panels -->
   <row>
