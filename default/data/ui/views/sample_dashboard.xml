@@ -1,4 +1,4 @@
-<dashboard version="1.1" hideFilters="true">
+<dashboard version="1.1" hideFilters="true" script="js/trac3_1.js" stylesheet="css/trac3_1.css">
   <fieldset autoRun="true" submitButton="false"> 
     <input type="radio" searchWhenChanged="true" token="role1">
       <label>Dashboard Options</label>
@@ -85,12 +85,17 @@
   <row>
     <panel>
       <table>
-        <search>
+        <search id="risk_map_search_1">
           <query>
-            | inputlookup trac3_lookup_1
+            | inputlookup trac3_lookup_1.csv
           </query>
         </search>
       </table>
+    </panel>
+    <panel id="trac3_risk_map_panel_1">
+      <html>
+        <div id="trac3_risk_map_container"/>
+      </html>
     </panel>
   </row>
   

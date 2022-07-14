@@ -1,0 +1,146 @@
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 40%;
+  padding: 10px;
+  padding-top: 50px;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  /*width: 500px;*/
+  border-bottom: 0.5px solid #d0d0ce;
+  border-left: 0.5px solid #d0d0ce;
+  /* code below to cut border slightly */
+  border-image: linear-gradient(to right, #d0d0ce 97%, rgba(0, 0, 0, 0) 90%);
+  border-image-slice: 1;
+  padding: 5px;
+  margin-left: 60px;
+}
+
+.flex-box {
+  width: 88px;
+  height: 60px;
+  margin: 2px;
+  background-color: #b3e3ff;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.outside-txt {
+  margin: -10px;
+  margin-left: 20px;
+}
+
+.horizontal-legend {
+  margin: 55px 20px 60px 40px;
+  display: flex;
+  justify-content: space-between;
+  width: 450px;
+}
+
+p {
+  font-family: "Open Sans";
+  font-size: 14px;
+}
+
+.heading {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.right-legend {
+  margin-left: 110px;
+  margin-top: -10px;
+}
+
+.percentage-text {
+  font-weight: 700;
+  font-size: 40px;
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+
+.percentage {
+  font-size: 15px;
+  vertical-align: super;
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+}
+
+/* Style the buttons inside tabs */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-family: "Open Sans";
+  font-size: 16px;
+  line-height: 22px;
+  color: #929293;
+}
+
+.tab button:hover {
+  color: black;
+  border-bottom: 2px solid #009a46;
+  border-image: linear-gradient(to right, #009a46 80%, rgba(0, 0, 0, 0) 80%);
+  border-image: linear-gradient(to left, #009a46 95%, rgba(0, 0, 0, 0) 90%);
+  border-image-slice: 2;
+  font-weight: bold;
+}
+
+.tab button.active {
+  color: black;
+  border-bottom: 2px solid #009a46;
+  border-image: linear-gradient(to right, #009a46 80%, rgba(0, 0, 0, 0) 80%);
+  border-image: linear-gradient(to left, #009a46 95%, rgba(0, 0, 0, 0) 90%);
+  border-image-slice: 2;
+  font-weight: bold;
+  line-height: 22px;
+}
+
+.tabcontent {
+  display: none;
+  border-top: none;
+}
+
+/* risk classes */
+.riskmap-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.risk-block {
+  height: 50px;
+  width: 20%;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.risk-level-0 {
+  background: grey;
+}
+
+.risk-level-1 {
+  background: lightgreen;
+}
+.risk-level-2 {
+  background: green;
+}
+.risk-level-3 {
+  background: orange;
+}
+.risk-level-4 {
+  background: red;
+}

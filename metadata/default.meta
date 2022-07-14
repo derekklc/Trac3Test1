@@ -14,8 +14,8 @@ export = system
 [lookups]
 export = system
 
-[lookups/trac3_lookup_1]
+[lookups/trac3_lookup_1.csv]
 owner = nobody
 
-[views/sample_dashboard]
+[views/sample_dashboard.csv]
 owner = nobody
