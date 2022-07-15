@@ -82,14 +82,60 @@ require(["jquery", "splunkjs/mvc", "splunkjs/mvc/simplexml/ready!"], function (
 
   function plotRiskMap(riskArray) {
     let html = `
+    <div class="risk-tab">
+      <button
+        class="tablinks"
+        onclick="openTab(event, 'RiskSummary')"
+        id="defaultOpen"
+      >
+        Risk Summary
+      </button>
+      <button class="tablinks" onclick="openTab(event, 'InherentRisk')">
+        Inherent Risk
+      </button>
+      <button class="tablinks" onclick="openTab(event, 'ResidualRisk')">
+        Residual Risk
+      </button>
+      <button class="tablinks" onclick="openTab(event, 'TStateRisk')">
+        Target State Risk
+      </button>
+    </div>
+
+    <div class="column">
+    <p class="risk-legend">High</p>
         <div class="riskmap-container">
     `;
 
     for (let rect of riskArray) {
-      html += `<div class="risk-block ${mapColor(rect)}" ></div>`;
+      html += `<div class="risk-block ${mapColor(rect)}" >2</div>`;
     }
 
-    html += `</div>`;
+    html += `</div>
+    <div class="risk-bottom-legend">
+        <p>Low</p>
+        <p>High</p>
+    </div>
+    </div>
+    <div class="column">
+    <p class="heading">Risk Levels </p>
+    <p class="percentage-text">6 
+    <span class="percentage">%</p>
+    <p>Unacceptable</p>
+    
+    <p class="percentage-text">20 
+    <span class="percentage">%</p>
+    <p>Undesirable</p>
+
+    <p class="percentage-text">23 
+    <span class="percentage">%</p>
+    <p>Tolerable</p>
+
+    <p class="percentage-text">50 
+    <span class="percentage">%</p>
+    <p>Broadly Acceptable</p>
+
+    </div>
+    `;
 
     // console.log("HTML: ", html);
 
