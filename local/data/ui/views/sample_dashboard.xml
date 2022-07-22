@@ -47,7 +47,7 @@
         font-size: 14px;
       }
       .bodySection {
-        margin-left: 10px;
+        margin-left: 5%;
       }
         .overviewTabSection {
             display: flex;
@@ -56,6 +56,8 @@
             gap: 17px;
             height: 50px;
             width: 100%;
+            background-color: black;
+            margin-top: 20px;
 
         }
         .activeOverviewTab {
@@ -113,13 +115,47 @@
             margin-top: 45px;
             gap: 10px;
             vertical-align: middle;
+        }
+            .links {
+          font-family: 'Open Sans';
+          font-style: normal;
+          font-weight: 200;
+          font-size: 14px;
+          text-decoration: none;
+          color: #FFFFFF;
+        }
+        .activeA {
+          font-family: 'Open Sans';
+          font-style: normal;
+          font-weight: 200;
+          font-size: 14px;
+          color: #C4D600;
+          text-decoration: underline;
+        }
+        a:hover{
+          color: #C4D600;
+          text-decoration: underline;
       }
+      .linkSection {
+          display: flex;
+          flex-direction: row;
+          gap: 20px;
+          background-color: black;
+          /*margin-top: -87px;*/
+      }
+
           </style>
         </head>
         <body>
            <img src="/Applications/Splunk/etc/apps/Trac3Test1/appserver/static/Header.jpeg" width="100%"/>
     <!--Tab section-->
     <div class="bodySection">
+      <!--links-->
+      <div class="linkSection">
+       <a href="" class="activeA">INPUTS</a>
+       <a href="" class="links">ANALYSIS</a>
+       <a href="" class="links">INTEGRATIONS</a>
+    </div>
     <div class="overviewTabSection">
         <button class="activeOverviewTab"><p>Overview</p></button>
         <button class="unactiveOverviewTab"><p>Data Analysis</p></button>
