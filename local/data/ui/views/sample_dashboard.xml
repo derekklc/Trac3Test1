@@ -32,6 +32,158 @@
   <row>
     <panel>
       <html>
+        <head>
+          <style>
+            h1 {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 200;
+            font-size: 32px;
+            line-height: 40px;
+        }
+        p,
+      label {
+        font-family: "Open Sans";
+        font-size: 14px;
+      }
+      .bodySection {
+        margin-left: 10px;
+      }
+        .overviewTabSection {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            gap: 17px;
+            height: 50px;
+            width: 100%;
+
+        }
+        .activeOverviewTab {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+            gap: 18px;
+            height: 40px;
+            background: white;
+            border-radius: 4px 4px 0px 0px;
+            border: none;
+        }
+        .unactiveOverviewTab {
+            background: #BBBDBC;
+            border-bottom: 0;
+            box-shadow: inset 0px -3px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 4px 4px 0px 0px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+            gap: 18px;
+            height: 40px;
+            border: none;
+        }
+        .unactiveOverviewTab:hover {
+            background: linear-gradient(0deg, #FFFFFF, #FFFFFF), rgba(208, 208, 206, 0.3);
+        }
+        
+        .box {
+        width: 100%;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        gap: 15px;
+      }
+      select {
+        justify-content: center;
+        align-items: center;
+        width: 150px;
+        border-radius: 4px;
+        height: 40px;
+        background: #F5F5F5;
+        border: 1px solid #D0D0CE;
+      }
+      .iconLayout {
+        display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 45px;
+            gap: 10px;
+            vertical-align: middle;
+      }
+          </style>
+        </head>
+        <body>
+           <img src="/Applications/Splunk/etc/apps/Trac3Test1/appserver/static/Header.jpeg" width="100%"/>
+    <!--Tab section-->
+    <div class="bodySection">
+    <div class="overviewTabSection">
+        <button class="activeOverviewTab"><p>Overview</p></button>
+        <button class="unactiveOverviewTab"><p>Data Analysis</p></button>
+        <button class="unactiveOverviewTab"><p>Threat Analysis</p></button>
+        <button class="unactiveOverviewTab"><p>Security Control</p></button>
+        <button class="unactiveOverviewTab"><p>Risk Analysis</p></button>
+        <button class="unactiveOverviewTab"><p>Compliance Analysis</p></button>
+      </div>
+      <h1>Overview</h1>
+    <!--Drop down section-->
+   <div class="box">
+        <label for="Application">Overview Types</label>
+        <select name="Application" id="Application">
+          <option>All</option>
+          <option>Something</option>
+        </select>
+        <label for="Application">Business Unit</label>
+        <select name="Application" id="Application">
+          <option>All</option>
+          <option>Something</option>
+        </select>
+        <label for="Application">Business Service</label>
+        <select name="Application" id="Application">
+          <option>All</option>
+          <option>Something</option>
+        </select>
+        <label for="Application">Application</label>
+        <select name="Application" id="Application">
+          <option>All</option>
+          <option>Something</option>
+        </select><label for="Application">Component</label>
+        <select name="Application" id="Application">
+          <option>All</option>
+          <option>Something</option>
+        </select>
+        <label for="Application">Hosting</label>
+        <select name="Application" id="Application">
+          <option>All</option>
+          <option>Something</option>
+        </select>
+        <label for="Application">Technology</label>
+        <select name="Application" id="Application">
+          <option>All</option>
+          <option>Something</option>
+        </select>
+        
+        <div class="iconLayout">
+        <svg width="24" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.99413 7.10178H12V5.33325H4V7.99992V10.6666V19.9999H18.6667V12.3172H16.7167V18.0886H5.94995V10.6666H5.99413V7.10178Z" fill="black"/>
+            <path d="M14.0284 5.76521L16.9313 5.75591L10.668 12.0764L11.9459 13.3333L18.2092 7.01283L18.1889 9.87539H19.9902L20.0013 4.01089L14.0168 4L14.0284 5.76521Z" fill="black"/>
+            </svg>
+            <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.2422 6H19.9922V15.9902H16.2422V21H3.76172V15.9902H0.0117188V6H3.76172V0.990234H16.2422V6ZM13.752 3.50977H6.25195V6H13.752V3.50977ZM2.50195 8.49023V13.5H3.76172V9.75H16.2422V13.5H17.502V8.49023H2.50195ZM13.752 12.2402H6.25195V18.5098H13.752V12.2402Z" fill="black"/>
+                </svg>
+            </div>
+           </div>
+           </div>
+        </body>
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <html>
       <h2>
       Welcome to your new app.  You can customize this app to look and work any way you want.  Here are a few options to get you started:
       </h2>
