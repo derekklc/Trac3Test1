@@ -2,37 +2,51 @@ require(["jquery", "splunkjs/mvc", "splunkjs/mvc/simplexml/ready!"], function (
   $,
   mvc
 ) {
-  let riskSearch = mvc.Components.get("risk_map_search_1");
-  if (riskSearch) {
-    let riskResults = riskSearch.data("results");
+  $(document).ready(function () {
+    riskSearchSection();
+    navTabsClicking();
+    riskTabsClicking();
+  });
 
-    riskResults.on("data", function () {
-      if (riskResults.data()) {
-        let fields = riskResults.data().fields;
-        let rows = riskResults.data().rows;
-        // console.log("check risk result: fields:", fields, "::rows::", rows);
+  function riskTabsClicking() {
+    $(document).on("click", ".risk-tab > button", function () {
+      $(".risk-tab .activeTab").removeClass("activeTab");
+      $(this).addClass("activeTab");
+    });
+  }
 
-        let likelihoodIndex = fields.indexOf("likelihood");
-        let severityIndex = fields.indexOf("severity");
+  function navTabsClicking() {
+    $(document).on("click", ".overviewTabSection > button", function () {
+      $(".overviewTabSection button").removeClass("activeOverviewTab");
+      $(this).addClass("activeOverviewTab");
+    });
+  }
 
-        // console.log(
-        //   "likelihoodIndex: ",
-        //   likelihoodIndex,
-        //   "::severityIndex::",
-        //   severityIndex
-        // );
+  function riskSearchSection() {
+    let riskSearch = mvc.Components.get("risk_map_search_1");
+    if (riskSearch) {
+      let riskResults = riskSearch.data("results");
 
-        if (likelihoodIndex != -1 && severityIndex != -1) {
-          let rowData = rows[0];
-          if (rowData[likelihoodIndex] && rowData[severityIndex]) {
-            let likelihoodArray = rowData[likelihoodIndex].split(":::");
-            let severityArray = rowData[severityIndex].split(":::");
-            let riskArray = getRiskArray(likelihoodArray, severityArray);
-            plotRiskMap(riskArray);
+      riskResults.on("data", function () {
+        if (riskResults.data()) {
+          let fields = riskResults.data().fields;
+          let rows = riskResults.data().rows;
+
+          let likelihoodIndex = fields.indexOf("likelihood");
+          let severityIndex = fields.indexOf("severity");
+
+          if (likelihoodIndex != -1 && severityIndex != -1) {
+            let rowData = rows[0];
+            if (rowData[likelihoodIndex] && rowData[severityIndex]) {
+              let likelihoodArray = rowData[likelihoodIndex].split(":::");
+              let severityArray = rowData[severityIndex].split(":::");
+              let riskArray = getRiskArray(likelihoodArray, severityArray);
+              plotRiskMap(riskArray);
+            }
           }
         }
-      }
-    });
+      });
+    }
   }
 
   function getRiskArray(likelihoodArray, severityArray) {
@@ -81,65 +95,71 @@ require(["jquery", "splunkjs/mvc", "splunkjs/mvc/simplexml/ready!"], function (
   }
 
   function plotRiskMap(riskArray) {
-    let html = `
-    <div class="risk-tab">
-      <button
-        class="tablinks"
-        onclick="openTab(event, 'RiskSummary')"
-        id="defaultOpen"
-      >
-        Risk Summary
-      </button>
-      <button class="tablinks" onclick="openTab(event, 'InherentRisk')">
-        Inherent Risk
-      </button>
-      <button class="tablinks" onclick="openTab(event, 'ResidualRisk')">
-        Residual Risk
-      </button>
-      <button class="tablinks" onclick="openTab(event, 'TStateRisk')">
-        Target State Risk
-      </button>
-    </div>
-
-    <div class="column">
-    <p class="risk-legend">High</p>
-        <div class="riskmap-container">
+    let section_1 = `
+      <div class="risk-tab">
+        <button
+          class="tablinks activeTab"
+          id="defaultOpen"
+        >
+          Risk Summary
+        </button>
+        <button class="tablinks" onclick="openTab(event, 'InherentRisk')">
+          Inherent Risk
+        </button>
+        <button class="tablinks" onclick="openTab(event, 'ResidualRisk')">
+          Residual Risk
+        </button>
+        <button class="tablinks" onclick="openTab(event, 'TStateRisk')">
+          Target State Risk
+        </button>
+      </div>
     `;
 
+    let section_2 = `
+      <div class="column1">
+      <p class="risk-legend">High</p>
+      <div class="riskmap-container">`;
     for (let rect of riskArray) {
-      html += `<div class="risk-block ${mapColor(rect)}" >2</div>`;
+      section_2 += `<div class="risk-block ${mapColor(rect)}" >2</div>`;
     }
+    section_2 += `
+      </div>
+          <div class="risk-bottom-legend">
+          <p>Low</p>
+          <p>High</p>
+      </div>
+    </div>`;
 
-    html += `</div>
-    <div class="risk-bottom-legend">
-        <p>Low</p>
-        <p>High</p>
-    </div>
-    </div>
-    <div class="column">
-    <p class="heading">Risk Levels </p>
-    <p class="percentage-text">6 
-    <span class="percentage">%</p>
-    <p>Unacceptable</p>
-    
-    <p class="percentage-text">20 
-    <span class="percentage">%</p>
-    <p>Undesirable</p>
+    $("#trac3_risk_map_container").append(section_2);
 
-    <p class="percentage-text">23 
-    <span class="percentage">%</p>
-    <p>Tolerable</p>
+    let section_3 = `
+      <div class="column2">
+        <p class="heading">Risk Levels </p>
+        <p class="percentage-text text_red">6 
+        <span class="percentage text_red">%</p>
+        <p>Unacceptable</p>
+        
+        <p class="percentage-text text_yellow">20 
+        <span class="percentage text_yellow">%</p>
+        <p>Undesirable</p>
 
-    <p class="percentage-text">50 
-    <span class="percentage">%</p>
-    <p>Broadly Acceptable</p>
+        <p class="percentage-text text_green">23 
+        <span class="percentage text_green">%</p>
+        <p>Tolerable</p>
 
-    </div>
+        <p class="percentage-text text_blue">50 
+        <span class="percentage text_blue">%</p>
+        <p>Broadly Acceptable</p>
+      </div>
     `;
 
-    // console.log("HTML: ", html);
-
-    $("#trac3_risk_map_container").empty().append(html);
+    $("#trac3_risk_map_container").empty().append(`
+      ${section_1}
+      <div id="riskMapColumns">
+        ${section_2}
+        ${section_3}
+      </div>
+    `);
 
     function mapColor(colorCode) {
       let colorClass = "";

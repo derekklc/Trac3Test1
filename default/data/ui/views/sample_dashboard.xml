@@ -1,5 +1,12 @@
-<dashboard version="1.1" hideFilters="true" script="js/trac3_1.js" stylesheet="css/trac3_1.css">
-  <fieldset autoRun="true" submitButton="false"> 
+<form version="1.1" hideFilters="true" script="js/trac3_1.js" stylesheet="css/trac3_1.css">
+  <label>Trac3 dashboard 1</label>
+  <search id="risk_map_search_1">
+    <query>
+      | inputlookup trac3_lookup_1.csv
+    </query>
+  </search>
+  <!-- Second row of 2 panels -->
+  <fieldset autoRun="true" submitButton="false">
     <input type="radio" searchWhenChanged="true" token="role1">
       <label>Dashboard Options</label>
       <choice value="option1">Option 1</choice>
@@ -22,25 +29,103 @@
       <default>option1</default>
     </input>
   </fieldset>
-  <label>Trac3 dashboard 1</label>
-
   <row>
+    <panel id="navPanel">
+      <html>
+        <body>
+    <!--Tab section-->
+    <div class="bodySection">
+      <!--links-->
+      <div class="linkSection">
+       <a href="" class="activeA">INPUTS</a>
+       <a href="" class="links">ANALYSIS</a>
+       <a href="" class="links">INTEGRATIONS</a>
+      </div>
+      <div class="overviewTabSection">
+        <button id="overviewTab" class="activeOverviewTab">Overview</button>
+        <button id="dataTab">Data Analysis</button>
+        <button id="threatTab">Threat Analysis</button>
+        <button id="securityTab">Security Control</button>
+        <button id="riskTab">Risk Analysis</button>
+        <button id="complianceTab">Compliance Analysis</button>
+      </div>
+    <!--Drop down section-->
 
-    <html>
+    </div>  
+    </body>
+  </html>
+  </panel>
+  </row>
+  
+  <row>
+    <panel id="filtersPanel1">
+      <html>
+        <div class="box">
+        <label>Overview Types</label>
+        <select name="Application" id="Application">
+          <option>All</option>
+          <option>Something</option>
+        </select>
+        <label >Business Unit</label>
+        <select name="Application" id="Application">
+          <option>All</option>
+          <option>Something</option>
+        </select>
+        <label>Business Service</label>
+        <select name="Application" id="Application">
+          <option>All</option>
+          <option>Something</option>
+        </select>
+        <label>Application</label>
+        <select name="Application" id="Application">
+          <option>All</option>
+          <option>Something</option>
+        </select><label >Component</label>
+        <select name="Application" id="Application">
+          <option>All</option>
+          <option>Something</option>
+        </select>
+        <label >Hosting</label>
+        <select name="Application" id="Application">
+          <option>All</option>
+          <option>Something</option>
+        </select>
+        <label>Technology</label>
+        <select name="Application" id="Application">
+          <option>All</option>
+          <option>Something</option>
+        </select>
+          
+        <div class="iconLayout">
+          <svg width="24" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.99413 7.10178H12V5.33325H4V7.99992V10.6666V19.9999H18.6667V12.3172H16.7167V18.0886H5.94995V10.6666H5.99413V7.10178Z" fill="black"/>
+            <path d="M14.0284 5.76521L16.9313 5.75591L10.668 12.0764L11.9459 13.3333L18.2092 7.01283L18.1889 9.87539H19.9902L20.0013 4.01089L14.0168 4L14.0284 5.76521Z" fill="black"/>
+          </svg>
+          <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.2422 6H19.9922V15.9902H16.2422V21H3.76172V15.9902H0.0117188V6H3.76172V0.990234H16.2422V6ZM13.752 3.50977H6.25195V6H13.752V3.50977ZM2.50195 8.49023V13.5H3.76172V9.75H16.2422V13.5H17.502V8.49023H2.50195ZM13.752 12.2402H6.25195V18.5098H13.752V12.2402Z" fill="black"/>
+          </svg>
+        </div>
+      </div>
+      </html>
+    </panel>
+  </row>
+  
+  <row>
+    <panel>
+      <html>
       <h2>
       Welcome to your new app.  You can customize this app to look and work any way you want.  Here are a few options to get you started:
       </h2>
       <ul>
           <li>Change the pages (or views) in this app.  Edit this view, or create a new one through Splunk Manager.</li>
           <li>Change the navigation menu for this app.  The navigation menu shows at the top of this view.</li>
-          <li>Read more on building apps in the <a href = "/help?location=sample_dashboard">Developer Manual</a>.</li>
-          <li>If you're not seeing any data, enable the "sample data" app in Manager <a href ="/manager/search/apps/local">here</a>. Note that this will index sample data which will count toward your daily indexing volume.</li>
+          <li>Read more on building apps in the <a href="/help?location=sample_dashboard">Developer Manual</a>.</li>
+          <li>If you're not seeing any data, enable the "sample data" app in Manager <a href="/manager/search/apps/local">here</a>. Note that this will index sample data which will count toward your daily indexing volume.</li>
       </ul>
     </html>
-
+    </panel>
   </row>
-  
-    <row>
+  <row>
     <panel rejects="$snapshot$">
       <title>Searches Started Per Minute by Dispatcher</title>
       <chart>
@@ -81,43 +166,342 @@
       </html>
     </panel>
   </row>
-  
   <row>
-    <panel>
-      <table>
-        <search id="risk_map_search_1">
-          <query>
-            | inputlookup trac3_lookup_1.csv
-          </query>
-        </search>
-      </table>
-    </panel>
     <panel id="trac3_risk_map_panel_1">
       <html>
         <div id="trac3_risk_map_container"/>
       </html>
     </panel>
   </row>
-  
-  <!-- Second row of 2 panels -->
   <row>
-    <chart>
-      <search ref="Top recipients - pie chart"></search>
-      <title>Top recipients</title>
-    </chart>
+    <panel>
+      <html>
+        <body>
+        <h1>Application File</h1>
+        </body>
+      </html>
+      <input type="dropdown" token="field1">
+        <label>Application</label>
+      </input>
 
-    <chart>
-      <search ref="Top recipients by mailer - area chart"></search>
-      <title>Top recipients by mailer</title>
-    </chart>
-    
+<html>
+  <body>
+    <div class="box">
+      <label >Application</label>
+      <select name="Application" id="Application">
+        <option>All</option>
+        <option>Something</option>
+      </select>
+      <label>Tools</label>
+      <div class="row">
+        <button class="applicationButton">
+          <div class="buttonSvg">
+            <svg
+              width="11"
+              height="11"
+              viewBox="0 0 16 17"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.99219 13.1797L4.71875 10.8828L3.28906 12.2891L8 17L12.7109 12.2891L11.2812 10.8828L9.00781 13.1797V4.60156H6.99219V13.1797ZM0.0078125 4.60156H2V2.58594H14V4.60156H15.9922V0.59375H0.0078125V4.60156Z"
+                fill="black"
+              />
+              </svg>
+          </div>
+          <p class="buttonText">Download Application File</p>
+        </button>
+        <button class="applicationButton">
+          <div class="buttonSvg">
+            <svg
+              width="11"
+              height="11"
+              viewBox="0 0 16 17"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.99219 4.41406L4.71875 6.71094L3.28906 5.30469L8 0.59375L12.7109 5.30469L11.2812 6.71094L9.00781 4.41406V12.9922H6.99219V4.41406ZM0.0078125 12.9922H2V15.0078H14V12.9922H15.9922V17H0.0078125V12.9922Z"
+                fill="black"
+              /></svg>
+            </div>
+            <p class="buttonText">Manually Update Application</p>
+        </button>
+        <button class="applicationButton">
+          <div class="buttonSvg">
+            <svg
+            width="11"
+            height="11"
+            viewBox="0 0 16 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6.99219 4.41406L4.71875 6.71094L3.28906 5.30469L8 0.59375L12.7109 5.30469L11.2812 6.71094L9.00781 4.41406V12.9922H6.99219V4.41406ZM0.0078125 12.9922H2V15.0078H14V12.9922H15.9922V17H0.0078125V12.9922Z"
+              fill="black"
+            /></svg>
+          </div>
+          <p class="buttonText">Upload Updated Application File</p>
+        </button>
+      </div>
+    </div>
+
+    <table>
+      <tr>
+        <th>
+          IT-OT
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 7.30867L14.804 10L16 8.83929L12 5L8 8.83929L9.19601 10L12 7.30867Z"
+              fill="white"
+            />
+            <path
+              d="M12 16.6913L9.19601 14L8 15.1607L12 19L16 15.1607L14.804 14L12 16.6913Z"
+              fill="white"
+            />
+          </svg>
+        </th>
+        <th>
+          Business Division
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 7.30867L14.804 10L16 8.83929L12 5L8 8.83929L9.19601 10L12 7.30867Z"
+              fill="white"
+            />
+            <path
+              d="M12 16.6913L9.19601 14L8 15.1607L12 19L16 15.1607L14.804 14L12 16.6913Z"
+              fill="white"
+            />
+          </svg>
+        </th>
+        <th>
+          Hosting Environment
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 7.30867L14.804 10L16 8.83929L12 5L8 8.83929L9.19601 10L12 7.30867Z"
+              fill="white"
+            />
+            <path
+              d="M12 16.6913L9.19601 14L8 15.1607L12 19L16 15.1607L14.804 14L12 16.6913Z"
+              fill="white"
+            />
+          </svg>
+        </th>
+        <th>
+          Application
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 7.30867L14.804 10L16 8.83929L12 5L8 8.83929L9.19601 10L12 7.30867Z"
+              fill="white"
+            />
+            <path
+              d="M12 16.6913L9.19601 14L8 15.1607L12 19L16 15.1607L14.804 14L12 16.6913Z"
+              fill="white"
+            />
+          </svg>
+        </th>
+        <th>
+          Component
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 7.30867L14.804 10L16 8.83929L12 5L8 8.83929L9.19601 10L12 7.30867Z"
+              fill="white"
+            />
+            <path
+              d="M12 16.6913L9.19601 14L8 15.1607L12 19L16 15.1607L14.804 14L12 16.6913Z"
+              fill="white"
+            />
+          </svg>
+        </th>
+        <th>
+          Data Asset
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 7.30867L14.804 10L16 8.83929L12 5L8 8.83929L9.19601 10L12 7.30867Z"
+              fill="white"
+            />
+            <path
+              d="M12 16.6913L9.19601 14L8 15.1607L12 19L16 15.1607L14.804 14L12 16.6913Z"
+              fill="white"
+            />
+          </svg>
+        </th>
+        <th>
+          Threat Agents
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 7.30867L14.804 10L16 8.83929L12 5L8 8.83929L9.19601 10L12 7.30867Z"
+              fill="white"
+            />
+            <path
+              d="M12 16.6913L9.19601 14L8 15.1607L12 19L16 15.1607L14.804 14L12 16.6913Z"
+              fill="white"
+            />
+          </svg>
+        </th>
+        <th>
+          Update
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 7.30867L14.804 10L16 8.83929L12 5L8 8.83929L9.19601 10L12 7.30867Z"
+              fill="white"
+            />
+            <path
+              d="M12 16.6913L9.19601 14L8 15.1607L12 19L16 15.1607L14.804 14L12 16.6913Z"
+              fill="white"
+            />
+          </svg>
+        </th>
+        <th>
+          Delete
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 7.30867L14.804 10L16 8.83929L12 5L8 8.83929L9.19601 10L12 7.30867Z"
+              fill="white"
+            />
+            <path
+              d="M12 16.6913L9.19601 14L8 15.1607L12 19L16 15.1607L14.804 14L12 16.6913Z"
+              fill="white"
+            />
+          </svg>
+        </th>
+      </tr>
+      <tr>
+        <td>OT</td>
+        <td>Customer Billing</td>
+        <td>Azure</td>
+        <td>Meter Reader</td>
+        <td>LDAP Server</td>
+        <td>Access Credentials</td>
+        <td>TA35</td>
+        <td>+</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>OT</td>
+        <td>Customer Billing</td>
+        <td>Azure</td>
+        <td>Meter Reader</td>
+        <td>LDAP Server</td>
+        <td>Access Credentials</td>
+        <td>TA35</td>
+        <td>+</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>OT</td>
+        <td>Customer Billing</td>
+        <td>Azure</td>
+        <td>Meter Reader</td>
+        <td>LDAP Server</td>
+        <td>Access Credentials</td>
+        <td>TA35</td>
+        <td>+</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>OT</td>
+        <td>Customer Billing</td>
+        <td>Azure</td>
+        <td>Meter Reader</td>
+        <td>LDAP Server</td>
+        <td>Access Credentials</td>
+        <td>TA35</td>
+        <td>+</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>OT</td>
+        <td>Customer Billing</td>
+        <td>Azure</td>
+        <td>Meter Reader</td>
+        <td>LDAP Server</td>
+        <td>Access Credentials</td>
+        <td>TA35</td>
+        <td>+</td>
+        <td>-</td>
+      </tr>
+    </table>
+  </body>
+</html>
+
+
+    </panel>
   </row>
-  
   <row>
-    <event>
-      <search ref="Sendmail transactions"></search>
-      <title>Sendmail transactions</title>
-    </event>
+    <panel>
+      <chart>
+        <title>Top recipients</title>
+        <search ref="Top recipients - pie chart"></search>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <title>Top recipients by mailer</title>
+        <search ref="Top recipients by mailer - area chart"></search>
+      </chart>
+    </panel>
   </row>
-
-</dashboard>
+  <row>
+    <panel>
+      <event>
+        <title>Sendmail transactions</title>
+        <search ref="Sendmail transactions"></search>
+      </event>
+    </panel>
+  </row>
+</form>
