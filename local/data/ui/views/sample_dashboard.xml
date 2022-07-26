@@ -36,7 +36,7 @@
     <!--Tab section-->
     <div class="bodySection">
       <!--links-->
-      <div class="linkSection">
+      <div class="linkSection" style="top-margin: 20">
        <a href="" class="activeA">INPUTS</a>
        <a href="" class="links">ANALYSIS</a>
        <a href="" class="links">INTEGRATIONS</a>
@@ -60,6 +60,8 @@
   <row>
     <panel id="filtersPanel1">
       <html>
+        <div class="position">
+        <h1>Overview</h1>
         <div class="box">
         <label>Overview Types</label>
         <select name="Application" id="Application">
@@ -105,6 +107,7 @@
             <path d="M16.2422 6H19.9922V15.9902H16.2422V21H3.76172V15.9902H0.0117188V6H3.76172V0.990234H16.2422V6ZM13.752 3.50977H6.25195V6H13.752V3.50977ZM2.50195 8.49023V13.5H3.76172V9.75H16.2422V13.5H17.502V8.49023H2.50195ZM13.752 12.2402H6.25195V18.5098H13.752V12.2402Z" fill="black"/>
           </svg>
         </div>
+      </div>
       </div>
       </html>
     </panel>
@@ -250,6 +253,7 @@
       <tr>
         <th>
           IT-OT
+          <div class="svgHeader">
           <svg
             width="20"
             height="20"
@@ -266,9 +270,11 @@
               fill="white"
             />
           </svg>
+          </div>
         </th>
         <th>
           Business Division
+          <div class="svgHeader">
           <svg
             width="20"
             height="20"
@@ -285,9 +291,11 @@
               fill="white"
             />
           </svg>
+          </div>
         </th>
         <th>
           Hosting Environment
+          <div class="svgHeader">
           <svg
             width="20"
             height="20"
@@ -304,9 +312,11 @@
               fill="white"
             />
           </svg>
+          </div>
         </th>
         <th>
           Application
+          <div class="svgHeader">
           <svg
             width="20"
             height="20"
@@ -323,9 +333,11 @@
               fill="white"
             />
           </svg>
+          </div>
         </th>
         <th>
           Component
+          <div class="svgHeader">
           <svg
             width="20"
             height="20"
@@ -342,9 +354,11 @@
               fill="white"
             />
           </svg>
+          </div>
         </th>
         <th>
           Data Asset
+          <div class="svgHeader">
           <svg
             width="20"
             height="20"
@@ -361,9 +375,11 @@
               fill="white"
             />
           </svg>
+          </div>
         </th>
         <th>
           Threat Agents
+          <div class="svgHeader">
           <svg
             width="20"
             height="20"
@@ -380,9 +396,11 @@
               fill="white"
             />
           </svg>
+          </div>
         </th>
         <th>
           Update
+          <div class="svgHeader">
           <svg
             width="20"
             height="20"
@@ -399,9 +417,11 @@
               fill="white"
             />
           </svg>
+          </div>
         </th>
         <th>
           Delete
+          <div class="svgHeader">
           <svg
             width="20"
             height="20"
@@ -418,6 +438,7 @@
               fill="white"
             />
           </svg>
+          </div>
         </th>
       </tr>
       <tr>
